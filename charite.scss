@@ -500,20 +500,22 @@ $sources-scale: 1.2; // .sources' font size, relative to the footer's
     //   // border-top: 1px solid rgb(255 255 255 / 0.25);
     // }
   }
-  // A QR code for the slides' URL, bottom left under the logo: .qr[ ![](images/qr.svg) ]
-  // White quiet zone round it, as scanners need one and the lower half is grey.
+  // The slides' QR code goes bottom left, under the logo, and the licence badge in the same
+  // cell to its right, both on the cell's bottom edge.
   .qr {
     grid-area: dept;
     align-self: end;
-    color: $gray;
+  }
+  .license {
+    grid-area: dept;
+    align-self: end;
+    justify-self: end;
     p {
       margin: 0;
     }
     img {
       display: block;
-      width: 6em;
-      padding: 0.3em;
-      background: white;
+      width: 5rem;
     }
   }
   p:has(.department) {
@@ -525,6 +527,22 @@ $sources-scale: 1.2; // .sources' font size, relative to the footer's
   }
   .remark-slide-number {
     display: none;
+  }
+}
+
+// A QR code with a label above it: .qr[ Slides ![](images/qr.svg) ]
+// White quiet zone round it, as scanners need one and slides may be grey. Sized in rem, so it
+// is the same on every slide whatever the font size around it.
+.qr {
+  color: $gray;
+  p {
+    margin: 0;
+  }
+  img {
+    display: block;
+    width: 9rem;
+    padding: 0.45rem;
+    background: white;
   }
 }
 
