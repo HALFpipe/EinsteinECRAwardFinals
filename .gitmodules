@@ -1,3 +1,6 @@
 [submodule "remark"]
 	path = remark
 	url = https://github.com/oesteban/remark-engine.git
+[submodule "images/botvinik-nezer-2020/narps"]
+	path = images/botvinik-nezer-2020/narps
+	url = https://github.com/poldrack/narps
