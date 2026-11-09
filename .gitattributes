@@ -4,3 +4,4 @@
 pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
 *.ipynb annex.largefiles=nothing
 *.html annex.largefiles=nothing
+*.scss annex.largefiles=nothing
