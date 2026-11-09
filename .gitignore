@@ -1,0 +1,12 @@
+# Generated file
+charite.css
+*.map
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+*/.pixi/*
+*/!.pixi/config.toml
+
+.vscode/*
+*/.vscode/*
