@@ -1,1 +1,284 @@
-.git/annex/objects/Wp/1v/MD5E-s5695--7507235c6321d5f953e00eee126ba155.html/MD5E-s5695--7507235c6321d5f953e00eee126ba155.html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Einstein ECR</title>
+  <link rel="stylesheet" href="remark/core/base.css" />
+  <link rel="stylesheet" href="charite.css" />
+  <link rel="stylesheet" href="remark/ext/nav-controls.css" />
+  <link rel="stylesheet" href="remark/vendor/asciinema-player/asciinema-player.css" />
+</head>
+
+<!-- .team[
+Lea Waller, PhD candidate
+
+Violeta Céspedes, PhD candidate, University of Amsterdam, Netherlands
+
+Prof. Clara A. Moreau, PhD, University of Montreal, Canada
+
+Mahan Shafie, MD, University of Turin, Italy
+
+Prof. Ilya M. Veer, PhD, University of Amsterdam, Netherlands
+] -->
+
+<body>
+  <textarea id="source">
+class: title
+
+# Global infrastructure for reproducible functional neuroimaging with `HALFpipe`
+
+.team[
+| Lea Waller, PhD candidate | | |
+|-|-|-|
+| Violeta Céspedes, PhD candidate | University of Amsterdam | Netherlands |
+| Prof. Clara Moreau, PhD | University of Montreal | Canada |
+| Mahan Shafie, MD | University of Turin | Italy |
+| Prof. Ilya M. Veer, PhD | University of Amsterdam | Netherlands |
+]
+
+---
+
+layout: true
+
+.footer[
+Department of Psychiatry and Neurosciences
+]
+
+---
+
+class: full-screen
+
+<video src="fmri-visualization/raw.webm" controls loop muted></video>
+
+.sources[
+| | |
+|-|-|
+| Data | Chopra et al. 2025 *Sci. Data* https://doi.org/g9pzcb |
+| Method | Esteban et al. 2019 *Nat. Methods* https://doi.org/gfpmxn |
+]
+
+---
+
+class: full-screen
+
+.figure[
+![](images/workflow.svg)
+]
+
+.sources[
+| | |
+|-|-|
+| Figure | <u>Waller</u> et al. 2022 *Hum. Brain Mapp.* https://doi.org/hmts |
+]
+
+---
+
+# User interface for configuration
+
+<div class="asciicast" id="halfpipe" data-cols="108" data-rows="24"></div>
+
+---
+
+# HALFpipe is in use at 81 universities in 22 countries
+
+.figure[
+![](images/map/map.svg)
+]
+
+---
+
+class: full-screen
+
+.row[
+.col[
+.figure[
+![](images/botvinik-nezer-2020/actual.svg)
+
+| | |
+|-|-|
+| Data | Botvinik-Nezer et al. 2020 *Nature* https://doi.org/ggwrvt |
+]
+]
+.col[
+.figure[
+![](images/marek-2022/marek-2022-figure-1-f-right.svg)
+
+| | |
+|-|-|
+| Data | Marek et al. 2022 *Nature* https://doi.org/gpps4r |
+]
+]
+]
+
+---
+
+# Federated meta-analyses
+
+.figure[
+![](images/map/collaborative.svg)
+]
+
+.credit[
+![](images/enigma.png) ENIGMA Consortium
+]
+
+---
+
+# Impact in psychiatric neuroimaging
+
+.figure[
+![](images/sample-size/halfpipe.svg)
+]
+
+.sources[
+| | |
+|-|-|
+| Data | https://europepmc.org/RestfulWebService, 2026-10-29 |
+| Method | Dockès et al. 2025 *eLife* https://doi.org/rwk6 |
+]
+
+---
+
+# User interface for fast quality control
+
+.figure[
+![](images/quality-control-1.svg)
+]
+
+.sources[
+| | |
+|-|-|
+| Figure | <u>Waller</u> et al. 2022 *Hum. Brain Mapp.* https://doi.org/hmts |
+]
+
+---
+
+# `Aim 1` Improve inter-rater reliability of quality control
+
+.row[
+.col[
+.figure[
+![](images/quality-control/precision-recall.svg)
+]
+]
+.figure[
+![](images/quality-control/qc-team.jpg)
+]
+]
+
+.credit[
+![](images/clara-moreau.jpg) Clara Moreau
+]
+
+---
+
+# `Aim 2` Quantify variability<br>across repeated HALFpipe runs
+
+.figure[
+![](images/numerical-variability/histogram.svg)
+]
+
+.credit[
+![](images/violeta-cespedes.jpg) Violeta Céspedes
+
+![](images/ilya-veer.jpg) Ilya Veer
+]
+
+---
+
+# `Aim 2` Quantify impact of variability<br>on psychiatric neuroimaging
+
+.figure[
+![](images/numerical-variability/swarm.svg)
+]
+
+.credit[
+![](images/mahan-shafie.jpg) Mahan Shafie
+]
+
+---
+
+class: full-screen
+
+.row.middle[
+<object data="images/fair.svg" type="image/svg+xml"></object>
+]
+
+
+---
+
+# Acknowledgements
+
+.row.names[
+.col[
+- Prof. Dr. Dr. Henrik Walter
+- Prof. Dr. Susanne Erk
+- Prof. Ilya M. Veer, PhD
+- Dr. Gina-Isabelle Henze
+- Prof. Frank G. Hillary, PhD
+- Emin Serin
+- Maja Neidhart
+- Zala Reppmann
+- Violeta Céspedes Izquierdo
+- Tomáš Fodran, PhD
+- Jason Staph
+- Clara El Khantour
+- Pierre Bergeret
+- Prof. Hao-Ting Wang, PhD
+]
+.col[
+- Prof. Odile A. van den Heuvel, MD, PhD
+- Chris Vriend, PhD
+- Prof. Dan J. Stein, PhD *(In memoriam)*
+- Prof. Joaquim Radua
+- Prof. Miquel A. Fullana
+- Prof. Dr. Dr. Dominik Bach
+- Jurjen Heij, PhD
+- Elena M. Pozzi, PhD
+- Prof. Lianne Schmaal, PhD
+- Prof. Rajendra A. Morey, MD
+- Prof. Jennifer S. Stevens, PhD
+- Prof. Delin Sun, PhD
+]
+.col[
+- Prof. Paul M. Thompson, PhD
+- Prof. Clara A. Moreau, PhD
+- Prof. Lune Bellec, PhD
+- Prof. Sarah E. Medland, PhD
+- Christopher J. Markiewicz, PhD
+- Prof. Oscar Esteban, PhD
+]
+]
+
+.figure[
+![](images/enigma-group-picture.jpg)
+]
+
+  </textarea>
+  <script>window.remarkEngineConfig = { slideNumberFormat: '%current%' };</script>
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="remark/vendor/asciinema-player/asciinema-player.min.js"></script>
+  <script src="remark/core/engine.js"></script>
+  <script src="asciicasts.js"></script>
+  <script src="remark/ext/nav-controls.js"></script>
+  <script>
+    // The layout's footer lays out the slide's sources and number too. Credits, and on
+    // full-screen slides the sources, go to a .corner in the top right instead.
+    document.querySelectorAll('.remark-slide-content').forEach(slide => {
+      const footer = slide.querySelector(':scope > .footer');
+      const sources = slide.querySelectorAll('.sources');
+      const corner = document.createElement('div');
+      corner.className = 'corner';
+      corner.append(...slide.querySelectorAll('.credit'));
+      if (footer) {
+        (slide.classList.contains('full-screen') ? corner : footer).append(...sources);
+        footer.append(slide.querySelector('.remark-slide-number'));
+      }
+      if (corner.childElementCount) slide.append(corner);
+    });
+  </script>
+</body>
+
+</html>

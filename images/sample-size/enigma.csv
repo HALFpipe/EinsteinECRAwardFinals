@@ -1,1 +1,8 @@
-../../.git/annex/objects/mP/Fz/MD5E-s413--70fd7ae880de91212800f9d0dd43c88b.csv/MD5E-s413--70fd7ae880de91212800f9d0dd43c88b.csv
+disorder,case_sample_size,control_sample_size,effective_sample_size
+Anorexia nervosa,872,1126,1965.7097097097096
+Autism spectrum disorder,2435,2408,4842.849473466859
+Bipolar disorder,900,900,1800.0
+Major depressive disorder,2106,2777,4790.794183903337
+Obsessive-compulsive disorder,1024,1028,2051.992202729045
+Post-traumatic stress disorder,1017,1702,2546.4273630011035
+Schizophrenia,1200,1400,2584.6153846153843

@@ -1,1 +1,538 @@
-.git/annex/objects/91/fM/MD5E-s13534--548799e7c0abcff44b4b0f3aea27faa5.scss/MD5E-s13534--548799e7c0abcff44b4b0f3aea27faa5.scss
+// Charité theme for remark-engine, after templates/Charite-Praesentation_Vorlage_EN.potx.
+// Build: make (or make watch). The sample slides in index.html show every class.
+
+$blue: #004d9b;
+$dark-blue: #002552;
+$gray: #5e676c;
+$mid-gray: #7e898f;
+$light-gray: #cbcfd2;
+
+$text: "Charité Text Office", sans-serif;
+$headline: "Charité Headline Office", sans-serif;
+$base-margin: 3.125rem; // the template's margin; every gap is a multiple of it
+
+// Source lists as a two-column markdown table (label | source). Markdown needs a header row,
+// so the table starts with an empty one, hidden here.
+@mixin source-table {
+  table {
+    border-collapse: collapse;
+  }
+  thead {
+    display: none;
+  }
+  td {
+    padding: 0.1em 0.3em;
+    border: 2px solid $light-gray;
+  }
+}
+
+@each $family in Text, Headline {
+  @each $weight, $style in (300: Light, 400: Regular, 700: Bold) {
+    @font-face {
+      font-family: "Charité #{$family} Office";
+      font-weight: $weight;
+      src: url("fonts/Charite#{$family}Office-#{$style}.ttf");
+    }
+  }
+}
+
+:root {
+  --accent: #{$blue};
+  --heading-color: #{$blue};
+}
+
+// remark nests each slide in a table; a block parent lets the slide be flex or grid in Firefox too.
+.remark-slide {
+  display: block;
+}
+
+.remark-slide-number {
+  font-size: 2em;
+}
+
+.remark-slide-content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: $base-margin 2 * $base-margin $base-margin * 0.5 $base-margin;
+  font: 1.5rem/1.2 $text;
+  background-size: cover;
+  print-color-adjust: exact;
+  --muted: #{$mid-gray};
+  --logo-filter: none;
+
+  &::after {
+    all: unset;
+  } // base.css's logo overlay; the footer carries the logo
+
+  h1,
+  h2 {
+    margin: 0;
+    font-weight: 400;
+  }
+  h1 {
+    font: 1.75em $headline;
+    color: $blue;
+  }
+  h2 {
+    font-size: 1.25em;
+    color: $gray;
+  }
+
+  // Headings end $m above the body, and hang $m left of it.
+  h1:not(:has(+ h2)),
+  h2 {
+    margin-bottom: calc($base-margin / 4);
+  }
+  &:not(.title) :is(h1, h2) ~ :not(h2, .footer) {
+    margin-inline-start: calc($base-margin / 4);
+  }
+
+  p,
+  ul,
+  ol,
+  li {
+    margin: 0 0 0.75em;
+  }
+  ul,
+  ol {
+    padding-inline-start: 1em;
+  }
+  ul ul {
+    list-style-type: "→  ";
+    margin-top: 0.75em;
+  }
+  strong,
+  em {
+    color: inherit;
+  }
+  // Inline code sits in the text like a word: the surrounding colour on a faint tint of it, so
+  // it reads on white, grey and blue slides alike, and scaled to the Charité fonts' cap height
+  // (0.597 em, Text and Headline alike), so it matches their size whichever monospace font
+  // renders. line-height: 1 keeps the tint from growing the line.
+  code,
+  .remark-inline-code {
+    font-family: "Roboto Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+    font-size: 1em;
+    font-size-adjust: cap-height 0.597;
+    line-height: 1;
+    color: inherit;
+    background: color-mix(in srgb, currentColor 14%, transparent);
+    border-radius: 0.15em;
+    padding: 0 0.15em;
+  }
+  // th {
+  //   background: $blue;
+  //   color: white;
+  //   text-align: left;
+  // }
+  // th,
+  // td {
+  //   // padding: 0.3em 0.5em;
+  //   border: 1px solid $light-gray;
+  // }
+
+  // Colour schemes, nested to outrank remark's white background.
+  &.blue,
+  &.section {
+    background-color: $blue;
+    color: white;
+    --muted: white;
+    --logo-filter: brightness(0) invert(1);
+  }
+  &.grey {
+    background-color: $light-gray;
+    color: black;
+    --muted: #{$mid-gray};
+    --logo-filter: none;
+  }
+}
+
+// Logo | department … sources | slide number. The layout puts it first; `order` moves it last.
+// A slide's .sources[…] is moved in by index.html's script; long sources grow the footer upwards.
+// Two rows: a fixed band the logo's height, where everything is centred, and above it a row
+// only the sources span into, so a tall table grows upwards and the rest stays put.
+$footer-band: 4em; // the logo's height
+$sources-scale: 1.2; // .sources' font size, relative to the footer's
+.footer {
+  order: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) fit-content(50%) auto;
+  grid-template-rows: auto $footer-band;
+  align-items: center;
+  column-gap: 2em;
+  margin: auto (-$base-margin) 0 0;
+  font-size: 0.625em;
+  color: var(--muted);
+  > *,
+  &::before {
+    grid-row: 2;
+  }
+
+  &::before {
+    content: "";
+    height: $footer-band;
+    aspect-ratio: 182.8 / 95.7;
+    background: url("images/logo-grey.svg") center / contain no-repeat;
+    filter: var(--logo-filter);
+  }
+  > p {
+    flex: 1;
+    margin: 0;
+    padding-inline-start: 2em;
+    border-inline-start: 1px solid;
+    line-height: 2.5;
+  }
+  .remark-slide-number {
+    position: static;
+    opacity: 1;
+  }
+
+  .sources {
+    // Spans both rows, bottom-aligned; at least the band's height with the content centred,
+    // so a short table sits mid-band like the rest and a tall one extends upwards.
+    grid-row: 1 / 3;
+    align-self: end;
+    min-height: calc($footer-band / $sources-scale);
+  }
+
+  // class: full-screen drops the logo and department, and its sources go to the .corner;
+  // the number stays, right-aligned.
+  .full-screen & {
+    display: flex;
+    justify-content: flex-end;
+    &::before,
+    > p {
+      display: none;
+    }
+  }
+}
+
+// How sources look, in the footer or the corner; the footer's layout of them is above.
+.sources {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: $sources-scale * 1em;
+  line-height: 1.3;
+  text-align: right;
+  p,
+  ul,
+  ol,
+  li {
+    margin: 0;
+  }
+  ul,
+  ol {
+    padding: 0;
+    list-style: none;
+  }
+  color: black;
+  @include source-table;
+  table {
+    margin-left: auto;
+  }
+}
+
+// Top right: a slide's .credit[…], and on full-screen slides its .sources[…], stacked and
+// right-aligned. index.html's script gathers them here, so the two never overlap. The footer's
+// font size, so sources read the same as in the footer.
+.corner {
+  position: absolute;
+  top: calc($base-margin / 4);
+  right: calc($base-margin / 4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5em;
+  font-size: 0.625em;
+  .sources table {
+    background: white; // over a full-screen figure
+  }
+}
+
+// Credit for people and organisations: one box per paragraph, a picture and a name, e.g.
+//   .credit[
+//   ![](images/people/jane-doe.jpg) Jane Doe
+//
+//   ![](images/enigma.svg) ENIGMA Consortium
+//   ]
+// Boxes sit side by side, framed like the source tables.
+.credit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5em;
+  font-size: $sources-scale * 1em;
+  line-height: 1.2;
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0;
+    padding: 0.25em 0.6em 0.25em 0.25em;
+    border: 2px solid $light-gray;
+    background: white;
+    color: black;
+    white-space: nowrap;
+  }
+  img {
+    height: 6em;
+    max-width: 8em; // a wide logo scales down instead of taking the row
+    object-fit: contain;
+  }
+}
+
+// class: full-screen with a <video>: the video covers the whole slide, padding included,
+// cropping rather than letterboxing. It sits behind everything else on the slide (the slide
+// isolates, so z-index -1 stays above its background), so the number stays on top without
+// positioning the footer, which would move the absolutely placed .sources.
+.full-screen {
+  isolation: isolate;
+  &:has(video) {
+    --muted: white; // the number in white, for contrast on the video
+    // Sources toned to the video. :has(video) adds specificity, so this outranks the
+    // corner's white (.full-screen:has(video) .corner .sources table, 0,3,2, vs. 0,2,1).
+    .corner .sources {
+      // color: white;
+      table {
+        background: $light-gray;
+        td {
+          border-color: $gray;
+        }
+      }
+    }
+  }
+  video {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  gap: 2 * $base-margin;
+  min-height: 0;
+  // Columns are flex too, so a .figure inside one is bounded by the row's height.
+  > * {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: calc(
+      $base-margin / 2
+    ); // between stacked items, e.g. two figures in one column
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+// asciinema scales the terminal to its wrapper's width, so a wide slide makes it too tall.
+// Fill the height left on the slide, and narrow the wrapper until the terminal fits it.
+// --cast-ratio (on the div in index.html) is the terminal's width/height: read .ap-player's size in devtools.
+.asciicast {
+  flex: 1;
+  min-height: 0;
+  container-type: size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .ap-wrapper {
+    width: min(
+      100cqw,
+      100cqh * var(--cast-ratio, 1.7)
+    ); // the control bar overlays the terminal
+  }
+}
+
+.middle {
+  // base.css centres .middle absolutely at the slide's full width; keep it in the flow instead.
+  position: static;
+  width: auto;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1; // fills the height left above the footer
+  justify-content: center; // text sits mid-height
+  min-height: 0;
+  > * {
+    justify-content: center;
+  } // columns centre their content too
+  .figure {
+    flex: 0 1 auto;
+  } // hug the image, so text and figure centre as one block
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  flex: 1; // fills the height left above the footer
+  justify-content: center; // image and caption, together, sit mid-height
+  min-height: 0;
+  font-size: 0.725em;
+  color: black;
+  .row > & {
+    flex: 0.7;
+  } // beside a text column: 0.7 of its width
+
+  p:has(> img) {
+    display: contents;
+  } // markdown wraps the image; make it the flex item
+  p {
+    margin: 0;
+    line-height: 1.1;
+  } // the caption: a blank line after the image makes it its own paragraph
+  @include source-table; // or a table of sources as the caption
+  table {
+    align-self: flex-start; // hug the text, don't stretch to the figure's width
+  }
+  // The box takes the image's height at full width and shrinks only when the slide is too short,
+  // so it always hugs the picture and the caption follows directly below.
+  img {
+    flex: 0 1 auto;
+    min-height: 0;
+    margin-bottom: calc(
+      $base-margin / 4
+    ); // between image and caption; caption lines stay tight
+    object-fit: contain; // scale, never crop: a cropped chart loses its axes
+    object-position: center; // when shrunk, the spare width is split left and right
+  }
+}
+
+.section {
+  display: grid;
+  grid-template: 1fr auto / auto 1fr;
+  align-items: center;
+  column-gap: 2 * $base-margin;
+
+  h1 {
+    font-size: 2.125em;
+    color: inherit;
+    max-width: 12em;
+  }
+  .number {
+    font: 12.5em/1 $headline;
+    color: $dark-blue;
+  }
+  &.grey .number {
+    color: white;
+  }
+  .footer {
+    grid-column: 1 / -1;
+  }
+}
+
+.title {
+  display: grid;
+  grid-template:
+    "logo ." 1fr
+    "logo head" auto
+    "dept sub" auto
+    "dept ." 1fr
+    / #{5 * $base-margin} 1fr;
+  column-gap: calc($base-margin * 1);
+  padding: $base-margin 1.5 * $base-margin $base-margin $base-margin;
+  color: white;
+  background: linear-gradient(white 50%, $light-gray 0); // grey lower half
+
+  &::before {
+    content: "";
+    grid-column: head;
+    grid-row: 1 / -1;
+    background: $blue;
+  } // the blue box
+  &::after {
+    content: "";
+    grid-area: logo;
+    margin-top: $base-margin;
+    aspect-ratio: 182.8 / 95.7;
+    background: url("images/logo-subline.svg") left top / contain no-repeat;
+  }
+  h1,
+  h1 + p {
+    margin: 0;
+    padding-inline: 2 * $base-margin;
+    font-family: $headline;
+    color: inherit;
+  }
+  h1 {
+    grid-area: head;
+    font-size: 2.125em;
+    margin-bottom: 0.5em;
+  }
+  h1 + p,
+  .team {
+    grid-area: sub;
+  }
+  // The team as a markdown table (name | institution | country), in one .team[…] block so it
+  // shares the sub cell. The header row is the presenter, set apart; the co-authors follow as a
+  // ruled list, affiliations lighter so the names lead.
+  .team {
+    padding-inline: 2 * $base-margin;
+    margin-top: 0.5em;
+    font-size: 0.75em;
+    line-height: 1.3;
+    table {
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      padding: 0.45em 0 0.45em 1.5em;
+      text-align: left;
+      white-space: nowrap; // one line per person, so the rows stay even
+      &:first-child {
+        padding-inline-start: 0;
+      }
+      &:not(:first-child) {
+        // font-weight: 300;
+        opacity: 0.75;
+      }
+    }
+    th {
+      // padding-bottom: 1em;
+      font-size: 1.15em;
+    }
+    // td {
+    //   // border-top: 1px solid rgb(255 255 255 / 0.25);
+    // }
+  }
+  p:has(.department) {
+    grid-area: dept;
+    align-self: center;
+    margin: 0;
+    font-size: 0.75em;
+    color: black;
+  }
+  .remark-slide-number {
+    display: none;
+  }
+}
+
+// Columns of names, e.g. the acknowledgements: .row.names[ .col[ - Name … ] .col[ … ] ]
+// Plain lists, without bullets or spacing, in the text grey; each column hugs its names.
+// The row hugs its tallest column rather than sharing the height like other rows, so a long
+// list never spills over what follows; a .figure after it (e.g. a group picture) takes the rest.
+// The columns sit centred as one block, like a figure's image.
+.names {
+  flex: none;
+  justify-content: center;
+  margin-bottom: calc($base-margin / 2);
+  font-size: 0.625em;
+  line-height: 1.3;
+  color: $gray;
+  > * {
+    flex: none;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    margin: 0;
+  }
+}
