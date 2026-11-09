@@ -500,6 +500,22 @@ $sources-scale: 1.2; // .sources' font size, relative to the footer's
     //   // border-top: 1px solid rgb(255 255 255 / 0.25);
     // }
   }
+  // A QR code for the slides' URL, bottom left under the logo: .qr[ ![](images/qr.svg) ]
+  // White quiet zone round it, as scanners need one and the lower half is grey.
+  .qr {
+    grid-area: dept;
+    align-self: end;
+    color: $gray;
+    p {
+      margin: 0;
+    }
+    img {
+      display: block;
+      width: 6em;
+      padding: 0.3em;
+      background: white;
+    }
+  }
   p:has(.department) {
     grid-area: dept;
     align-self: center;
